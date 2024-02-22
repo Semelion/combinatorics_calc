@@ -138,13 +138,20 @@ def main(page: ft.Page): # функция отрисовки окна
         ],
         on_change=changetab)
     ###TAB 1####
-    get_result_1(e):
+    def get_result_1(e):
+        input_list = []
+        # print(input_list)
+        for i in num1.value.split(','):
+            if i != '':
+                input_list.append(int(i))
+        print(input_list)
+
 
     num1 = ft.TextField(label="Все количкства вариантов через запятую",  on_change=lambda e: validate_numbers(num1, page, id=0), border_radius=10)
-    calculate1 = ft.FilledButton("Посчитать", on_click=get_result)
-    res
+    calculate1 = ft.FilledButton("Посчитать", on_click=get_result_1)
+    res_1 = ft.Text("")
 
-    tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1])
+    tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1,calculate1])
 
     ###
     tab_product_rule = ft.Text("TAB 2")

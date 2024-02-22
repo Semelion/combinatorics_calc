@@ -3,7 +3,7 @@ import re
 
 import backend
 
-last_valid_value = [""]
+last_valid_value = ["",""]
 
 regex = "^[0-9,]+$"
 pattern = re.compile(regex)
@@ -158,8 +158,24 @@ def main(page: ft.Page): # функция отрисовки окна
 
     tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1, calculate1, res_1])
 
-    ###
-    tab_product_rule = ft.Text("TAB 2")
+    ###TAB 2####
+    def get_result_2(e):
+        input_list = []
+        # print(input_list)
+        for i in num2.value.split(','):
+            if i != '':
+                input_list.append(int(i))
+        print(backend.rule_of_multiplication(input_list))
+        res_2.value = "Ответ: " + str(backend.rule_of_multiplication(input_list))
+        page.update()
+
+    num2 = ft.TextField(label="Все количкства вариантов через запятую",  on_change=lambda e: validate_numbers(num2, page, id=1), border_radius=10)
+    calculate2 = ft.FilledButton("Посчитать", on_click=get_result_2)
+    res_2 = ft.Text("")
+
+    tab_product_rule = ft.Column([ft.Text("TAB 2"), num2, calculate2, res_2])
+
+
     tab_placements_with_repetitions = ft.Text("TAB 3")
     tab_placements_without_repetitions = ft.Text("TAB 4")
     tab_combinations_with_repetitions = ft.Text("TAB 5")

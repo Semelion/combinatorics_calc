@@ -1,5 +1,6 @@
 from itertools import product
 from itertools import permutations
+
 def rule_of_sum(numbers):
     # Проверяем, пуст ли список
     if not numbers:
@@ -24,5 +25,3 @@ def arrangements_without_replacement(choices, length):
     # Генерируем все возможные перестановки без повторений
     all_arrangements = permutations(choices, length)
     return list(all_arrangements)
-
-

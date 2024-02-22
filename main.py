@@ -1,6 +1,8 @@
 import flet as ft
 import re
 
+import backend
+
 last_valid_value = [""]
 
 regex = "^[0-9,]+$"
@@ -144,14 +146,17 @@ def main(page: ft.Page): # функция отрисовки окна
         for i in num1.value.split(','):
             if i != '':
                 input_list.append(int(i))
-        print(input_list)
+        # print(input_list)
+        res_1.value = "Ответ: " + str(backend.rule_of_sum(input_list))
+        page.update()
+
 
 
     num1 = ft.TextField(label="Все количкства вариантов через запятую",  on_change=lambda e: validate_numbers(num1, page, id=0), border_radius=10)
     calculate1 = ft.FilledButton("Посчитать", on_click=get_result_1)
     res_1 = ft.Text("")
 
-    tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1,calculate1])
+    tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1, calculate1, res_1])
 
     ###
     tab_product_rule = ft.Text("TAB 2")

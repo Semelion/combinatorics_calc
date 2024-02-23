@@ -182,7 +182,7 @@ def main(page: ft.Page): # функция отрисовки окна
 
     ###TAB 5####
     def get_result_5(e):
-        res_5.value = "Ответ: " + str(backend.next_combination(num5_combination.value.split(','), int(num5.value)))
+        res_5.value = "Ответ: " + str(backend.sequence_combination_generator(len(num5_combination.value.split(',')), int(num5.value)))
         page.update()
     num5_combination = ft.TextField(label="Все элементы через запятую", border_radius=10)
     num5 = ft.TextField(label="Количество мест размещения",  on_change=lambda e: validate_numbers(num3_length, page, id=4), border_radius=10)

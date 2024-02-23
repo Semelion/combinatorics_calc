@@ -97,9 +97,9 @@ def count_combinations(k, n):
             break
 
     return count
-"""    
-n =  5  
-k =  3  
+"""
+n =  5
+k =  3
 print(count_combinations(k, n))
 """
 #для размещений с повторениями
@@ -107,7 +107,7 @@ def count_permutations(n, k):
     z = [0 for i in range(k)]
     count =  0
     while True:
-        # Счетчик для подсчета размещений 
+        # Счетчик для подсчета размещений
         count +=  1
 
         for i in range(k-1, -1, -1):
@@ -158,4 +158,4 @@ def k_permutation_of_n(k, sequence):
                 break
         swap(sequence, i, j)
         reverse(sequence, i)
-        return sequence[:k:]
+        return len(sequence[:k:])

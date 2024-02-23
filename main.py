@@ -182,7 +182,7 @@ def main(page: ft.Page): # функция отрисовки окна
 
     ###TAB 5####
     def get_result_5(e):
-        res_5.value = "Ответ: " + str(backend.sequence_combination_generator(len(num5_combination.value.split(',')), int(num5.value)))
+        res_5.value = "Ответ: " + str(backend.sequence_combination_generator(num5_combination.value.split(','), int(num5.value)))
         page.update()
     num5_combination = ft.TextField(label="Все элементы через запятую", border_radius=10)
     num5 = ft.TextField(label="Количество мест размещения",  on_change=lambda e: validate_numbers(num3_length, page, id=4), border_radius=10)
@@ -191,10 +191,16 @@ def main(page: ft.Page): # функция отрисовки окна
 
     tab_combinations_with_repetitions = ft.Column([num5_combination, num5, calculate5, res_5])
 
-
     ###TAB 6####
-    tab_combinations_without_repetitions = ft.Text("TAB 6")
+    def get_result_6(e):
+        res_6.value = "Ответ: " + str(backend.sequence_combination_generator(num6_combination.value.split(','), int(num6.value)))
+        page.update()
+    num6_combination = ft.TextField(label="Все элементы через запятую", border_radius=10)
+    num6 = ft.TextField(label="Количество мест размещения",  on_change=lambda e: validate_numbers(num3_length, page, id=5), border_radius=10)
+    res_6 = ft.Text("",size=50)
+    calculate6 = ft.FilledButton("Посчитать", on_click=get_result_6)
 
+    tab_combinations_without_repetitions = ft.Column([num6_combination, num6, calculate6, res_6])
 
     ###TAB 7####
     tab_permutations_with_repetitions = ft.Text("TAB 7")

@@ -127,35 +127,35 @@ k = 3
 print(count_permutations(k,  n))
 """
 #для размещений без повторений
-def swap(sequence, i, j):
-    sequence[i], sequence[j] = sequence[j], sequence[i]
+def count_permutations(k, n):
+    sequence = list(range(1, n +  1))
+    count =  0
 
-def reverse(sequence, index):
-    shift = index + 1
-    n = len(sequence)
-    for i in range((n - shift) // 2):
-        sequence[shift + i], sequence[n - 1 - i] = sequence[n - 1 - i], sequence[shift + i]
+    def swap(sequence, i, j):
+        sequence[i], sequence[j] = sequence[j], sequence[i]
 
-def k_permutation_of_n(k, sequence):
-    n = len(sequence)
-    for j in range(k, n):
-        if sequence[j] > sequence[k-1]:
-            break
-    else:
-        j = n
-    if j < n:
-        swap(sequence, k-1, j)
-        return sequence[:k:]
-    else:
-        reverse(sequence, k-1)
-        for i in range(k-2, -1, -1):
-            if sequence[i] < sequence[i+1]:
-                break
-        else:
-            return None
-        for j in range(n-1, 1, -1):
-            if sequence[j] > sequence[i]:
-                break
-        swap(sequence, i, j)
-        reverse(sequence, i)
-        return len(sequence[:k:])
+    def reverse(sequence, index):
+        shift = index +  1
+        n = len(sequence)
+        for i in range((n - shift) //  2):
+            sequence[shift + i], sequence[n -  1 - i] = sequence[n -  1 - i], sequence[shift + i]
+
+    def generate_permutations(k, sequence):
+        nonlocal count
+        if k ==  0:
+            count +=  1
+            return
+        for i in range(len(sequence) - k +  1):
+            # Если текущий элемент не равен  0, продолжаем генерацию размещений
+            if sequence[i] !=  0:
+                sequence[i], sequence[i + k -  1] = sequence[i + k -  1], sequence[i]
+                generate_permutations(k -  1, sequence)
+                sequence[i], sequence[i + k -  1] = sequence[i + k -  1], sequence[i]
+
+    generate_permutations(k, sequence)
+    return count
+"""
+n = 5
+k =  3
+print(count_permutations(k, n))
+"""

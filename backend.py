@@ -17,19 +17,19 @@ def rule_of_multiplication(numbers):
         # Рекурсивно применяем правило произведения
     return numbers[0] * rule_of_multiplication(numbers[1:])
 
-#для размещений с повторениями 
+#для размещений с повторениями
 def arrangements_with_replacement(choices, length):
     # Генерируем все возможные комбинации с повторениями
     all_arrangements = product(choices, repeat=length)
-    return list(all_arrangements)
+    return len(list(all_arrangements))
 
 #для размещений без повторений
 def arrangements_without_replacement(choices, length):
     # Генерируем все возможные перестановки без повторений
     all_arrangements = permutations(choices, length)
-    return list(all_arrangements)
+    return len(list(all_arrangements))
 
-#для сочетаний с повторениями  
+#для сочетаний с повторениями
 def next_combination(combination, n):
     k = len(combination)
     for i in range(k-1, -1, -1):
@@ -57,7 +57,7 @@ def sequence_combination_generator(sequence, k):
     return None
 
 
-# для сочетаний без повторений 
+# для сочетаний без повторений
 def print_combination(k, n):
     comb_ls = []
     for i in range(k):

@@ -75,3 +75,51 @@ def print_combination(k, n):
             comb_ls[j] += 1
         else:
             break
+
+#для размещений с повторениями 
+def get_permutation (n, k):
+    z = [0 for i in range(k)]
+    while True:
+        print (z)
+        for i in range(k-1, -1,- 1):
+            if z[i] < n-1:
+                break
+        else:
+            return
+        z[i] += 1
+        for j in range(i+1, k):
+            z[j] = 0 
+
+#для размещений без повторений
+def swap(sequence, i, j):
+    sequence[i], sequence[j] = sequence[j], sequence[i]
+
+def reverse(sequence, index):
+    shift = index + 1
+    n = len(sequence)
+    for i in range((n - shift) // 2):
+        sequence[shift + i], sequence[n - 1 - i] = sequence[n - 1 - i], sequence[shift + i]
+
+def k_permutation_of_n(k, sequence):
+    n = len(sequence)
+    for j in range(k, n):
+        if sequence[j] > sequence[k-1]:
+            break
+    else:
+        j = n
+    if j < n:
+        swap(sequence, k-1, j)
+        return sequence[:k:]
+    else:
+        reverse(sequence, k-1)
+        for i in range(k-2, -1, -1):
+            if sequence[i] < sequence[i+1]:
+                break
+        else:
+            return None
+        for j in range(n-1, 1, -1):
+            if sequence[j] > sequence[i]:
+                break
+        swap(sequence, i, j)
+        reverse(sequence, i)
+        return sequence[:k:]

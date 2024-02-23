@@ -48,24 +48,18 @@ def next_combination(combination, n):
     return combination
 
 def combination_generator(n, k):
-#Генератор сочетаний с повторениями из чисел от  0 до n-1; n - количество элементов в сочетании, k - количество повторений каждого элемента
-#Возвращает: Генератор, который последовательно выдает все сочетания с повторениями
     combination = [0]*k
+    count =  0  # Счетчик для подсчета комбинаций
     while combination is not None:
-        yield combination
+        count +=  1  # Увеличиваю счетчик на  1 при каждой новой комбинации
         combination = next_combination(combination, n)
-    return None
+    return count
 
 def sequence_combination_generator(sequence, k):
-#sequence - исходная последовательность, k - количество повторений каждого элемента
-#Возвращает: Генератор, который последовательно выдает все сочетания с повторениями для заданной последовательности
     n = len(sequence)
-    for comb in combination_generator(n, k):
-        # Создаю сочетание, используя элементы исходной последовательности по индексам из комбинации
-        result = [sequence[i] for i in comb]
-        yield result
-    return None
-
+    # Вызываю combination_generator для подсчета комбинаций
+    count = combination_generator(n, k)
+    return count
 
 
 # для сочетаний без повторений

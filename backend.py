@@ -17,13 +17,13 @@ def rule_of_multiplication(numbers):
         # Рекурсивно применяем правило произведения
     return numbers[0] * rule_of_multiplication(numbers[1:])
 
-#для размещений с повторениями 
+#для перестановки с повторениями 
 def arrangements_with_replacement(choices, length):
     # Генерируем все возможные комбинации с повторениями
     all_arrangements = product(choices, repeat=length)
     return list(all_arrangements)
 
-#для размещений без повторений
+#для перестановки без повторений
 def arrangements_without_replacement(choices, length):
     # Генерируем все возможные перестановки без повторений
     all_arrangements = permutations(choices, length)

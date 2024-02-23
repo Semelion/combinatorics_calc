@@ -3,7 +3,7 @@ import re
 
 import backend
 
-last_valid_value = ["",""]
+last_valid_value = ["","","",""]
 
 regex = "^[0-9,]+$"
 pattern = re.compile(regex)
@@ -32,42 +32,7 @@ def main(page: ft.Page): # функция отрисовки окна
     )
     # page.window_width = 350
     page.window_height = 700
-    # page.window_resizable = False
 
-    ######################
-    # page.update()
-    # ####function##### функции
-    # def close_banner(e): # реакция на кнопку ок в банере для его закрытия
-    #     page.banner.open = False
-    #     page.update()
-    #
-    #
-    # def changetab(e): # функция смены вкладок
-    #     # GET INDEX TAB
-    #     my_index = e.control.selected_index
-    #     tab_1.visible = True if my_index == 0 else False
-    #     tab_2.visible = True if my_index == 1 else False
-    #     page.update()
-    #
-    # ####visible components#### Сами визуальные компоненты
-    # page.title = "Калькулятор комбинаторных схем"
-    # page.theme = ft.Theme(
-    #     color_scheme=ft.ColorScheme(
-    #         primary=ft.colors.GREEN,
-    #         primary_container=ft.colors.GREEN_200
-    #     ),
-    # )
-    # page.window_width = 350
-    # page.window_height = 500
-    # page.window_resizable = False
-    #
-    #
-    # ########## добавление компонентов на страницу приложения
-    #
-    # tab_1 = ft.Text("TAB 1")
-    # tab_2 = ft.Text("TAB 2")
-    # tab_2.visible = False
-    # page.add(tab_1, tab_2)
     ####FUNCTIONS#######
     def changetab(e): # функция смены вкладок
         # GET INDEX TAB
@@ -139,6 +104,7 @@ def main(page: ft.Page): # функция отрисовки окна
             )
         ],
         on_change=changetab)
+
     ###TAB 1####
     def get_result_1(e):
         input_list = []
@@ -152,11 +118,11 @@ def main(page: ft.Page): # функция отрисовки окна
 
 
 
-    num1 = ft.TextField(label="Все количкства вариантов через запятую",  on_change=lambda e: validate_numbers(num1, page, id=0), border_radius=10)
+    num1 = ft.TextField(label="Все количества вариантов через запятую",  on_change=lambda e: validate_numbers(num1, page, id=0), border_radius=10)
     calculate1 = ft.FilledButton("Посчитать", on_click=get_result_1)
     res_1 = ft.Text("")
 
-    tab_sum_rule = ft.Column([ft.Text("TAB 1"), num1, calculate1, res_1])
+    tab_sum_rule = ft.Column([num1, calculate1, res_1])
 
     ###TAB 2####
     def get_result_2(e):
@@ -165,22 +131,46 @@ def main(page: ft.Page): # функция отрисовки окна
         for i in num2.value.split(','):
             if i != '':
                 input_list.append(int(i))
-        print(backend.rule_of_multiplication(input_list))
+        # print(backend.rule_of_multiplication(input_list))
         res_2.value = "Ответ: " + str(backend.rule_of_multiplication(input_list))
         page.update()
 
-    num2 = ft.TextField(label="Все количкства вариантов через запятую",  on_change=lambda e: validate_numbers(num2, page, id=1), border_radius=10)
+    num2 = ft.TextField(label="Все количества вариантов через запятую",  on_change=lambda e: validate_numbers(num2, page, id=1), border_radius=10)
     calculate2 = ft.FilledButton("Посчитать", on_click=get_result_2)
     res_2 = ft.Text("")
 
-    tab_product_rule = ft.Column([ft.Text("TAB 2"), num2, calculate2, res_2])
+    tab_product_rule = ft.Column([num2, calculate2, res_2])
+
+    ###TAB 3####
+    def get_result_3(e):
+        res_3.value = "Ответ: " + str(backend.arrangements_with_replacement(num3_choices.value.split(','), int(num3_length.value)))
+        page.update()
+    num3_choices = ft.TextField(label="Все количества вариантов через запятую",  on_change=lambda e: validate_numbers(num3_choices, page, id=2), border_radius=10)
+    num3_length = ft.TextField(label="Все количества вариантов через запятую",  on_change=lambda e: validate_numbers(num3_length, page, id=3), border_radius=10)
+    res_3 = ft.Text("")
+    calculate3 = ft.FilledButton("Посчитать", on_click=get_result_3)
+
+    tab_placements_with_repetitions = ft.Column([num3_choices, num3_length, calculate3, res_2])
 
 
-    tab_placements_with_repetitions = ft.Text("TAB 3")
+    ###TAB 4####
     tab_placements_without_repetitions = ft.Text("TAB 4")
+
+
+    ###TAB 5####
     tab_combinations_with_repetitions = ft.Text("TAB 5")
+
+
+    ###TAB 6####
     tab_combinations_without_repetitions = ft.Text("TAB 6")
+
+
+    ###TAB 7####
     tab_permutations_with_repetitions = ft.Text("TAB 7")
+
+
+
+    ###TAB 8####
     tab_permutations_without_repetitions = ft.Text("TAB 8")
 
     tab_product_rule.visible = False

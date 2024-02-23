@@ -103,19 +103,29 @@ k =  3
 print(count_combinations(k, n))
 """
 #для размещений с повторениями
-def get_permutation (n, k):
+def count_permutations(n, k):
     z = [0 for i in range(k)]
+    count =  0
     while True:
-        print (z)
-        for i in range(k-1, -1,- 1):
+        # Счетчик для подсчета размещений 
+        count +=  1
+
+        for i in range(k-1, -1, -1):
             if z[i] < n-1:
                 break
         else:
-            return
-        z[i] += 1
+            return count
+        z[i] +=  1
         for j in range(i+1, k):
-            z[j] = 0
+            z[j] =  0
 
+    return count
+
+"""
+n = 5
+k = 3
+print(count_permutations(k,  n))
+"""
 #для размещений без повторений
 def swap(sequence, i, j):
     sequence[i], sequence[j] = sequence[j], sequence[i]

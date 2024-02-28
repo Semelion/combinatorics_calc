@@ -22,4 +22,7 @@
 В файле `main.py` графическое приложение с проверками полей, в `backend.py` реализация всех расчетов
 
 ## Видео с работой приложения
-[video](vid.mov)
+
+
+https://github.com/Semelion/combinatorics_calc/assets/46895401/3f91d1af-e737-4db0-8836-08c4a09cdb41
+
